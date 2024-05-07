@@ -15,12 +15,10 @@ def get_coordinates(user_address):
     lon = data[0].get("lon")
     lat = data[0].get("lat")
     return lon,lat
-#except Exception as e:
-       # print(f'An error occurred while attempting to send SMS message to "{number}" (message: "{msg}"). \nError: ', e)
 
 
 
-def send_sms_user(phone_number, message, request_headers=None):
+def send_sms_user(phone_number, message, request_headers):
     headers = {
         'Authorization': AUTHORIZATION,
         'Content-Type': 'application/json',
