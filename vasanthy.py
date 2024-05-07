@@ -10,11 +10,15 @@ AUTHORIZATION = 'App 3dec643d54c66b6fab8fbfcce32f8081-27aba670-39dd-40be-8371-0f
 
 def get_coordinates(user_address):
     address = user_address.replace(" ", "+")
-    res = requests.get(BEGIN_URL + address + END_URL)
+    while True:
+        res = requests.get(BEGIN_URL + address + END_URL)
+        if res != None:
+            break
     data = json.loads(res.text)
     lon = data[0].get("lon")
     lat = data[0].get("lat")
     return lon, lat
+
 
 def send_sms_user(phone_number, message):
     headers = {
