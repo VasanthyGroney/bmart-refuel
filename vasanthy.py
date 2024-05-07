@@ -18,7 +18,7 @@ def get_coordinates(user_address):
 
 
 
-def send_sms_user(phone_number, message, request_headers):
+def send_sms_user(phone_number, message):
     headers = {
         'Authorization': AUTHORIZATION,
         'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ def send_sms_user(phone_number, message, request_headers):
         ]
     })
 
-    data = requests.post(SMS_BASE_URL, data=payload, headers=request_headers)
+    data = requests.post(SMS_BASE_URL, data=payload)
     response = data.text
     data = response.read()
 
