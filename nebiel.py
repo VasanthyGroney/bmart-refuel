@@ -15,14 +15,11 @@ def get_api_info(lat, lng, rad, fuel, sort):
     return useful_stations[:3]
 
 
-def write_message(gasstations):
+def write_message(gasstations, fuel):
     message = 'Our recommendation:\n'
     for station in gasstations:
         message += (f"{station["name"]}\n"
+                    f"Price for {fuel}: {station["price"]}\n"
                     f"For redirection click Link:\n"
                     f"LINK\n\n")
     return message
-
-
-print(get_api_info("52.516181", "13.376935", "5", "e5", "price"))
-print(write_message(get_api_info("52.516181", "13.376935", "5", "e5", "price")))
