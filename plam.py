@@ -46,10 +46,11 @@ def get_all_inputs():
                 val = input(f"Enter a {key}: ")
             user_params[key] = val
         save_user_params(user_params, "sms_project.json", phone_number, database)
+        return phone_number, user_params
     location, radius, fuel = get_user_params()
     user_params = {"location": location, "radius": radius, "fuel": fuel}
     save_user_params(user_params, "sms_project.json", phone_number, database)
-
+    return phone_number, user_params
 
 if __name__ == "__main__":
     get_all_inputs()
