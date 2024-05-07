@@ -1,8 +1,12 @@
 {
-  "google_maps_api_key": "YOUR_GOOGLE_MAPS_API_KEY",
-  "fuel_stations": [
-
-
-
-     ]
+  "4916478973665":{
+    "address": "Scheinerweg 15 13456 Berlin",
+    "radius": 5,
+    "fuel":"e5"
+  },
+  "9876543210": {
+    "name": "Jane Smith",
+    "email": "jane@example.com"
+  }
 }
+
