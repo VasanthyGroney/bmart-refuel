@@ -34,7 +34,7 @@ def get_user_params():
             break
         print("You have entered a wrong radius.\nTry again.")
     while True:
-        fuel = input("What do you want to fuel (Enter 'e5', 'e10' or 'diesel': ")
+        fuel = input("What do you want to fuel? \n(Enter 'e5', 'e10' or 'diesel'): ")
         if fuel in ['e5', 'e10', 'diesel']:
             break
         print("Wrong fuel type.\nTry again")
@@ -49,7 +49,7 @@ def get_all_inputs():
         user_params = {}
         for key, val in data.items():
             print(f"{key}: {val}")
-            answer_choice = input(f"Do you want to use the same {key}?")
+            answer_choice = input(f"Do you want to use the same {key.capitalize()}?\nEnter 'yes' or 'no': ")
             if "n" in answer_choice.lower():
                 val = input(f"Enter a new {key}: ")
             user_params[key] = val
@@ -59,6 +59,7 @@ def get_all_inputs():
     user_params = {"location": location, "radius": radius, "fuel": fuel}
     save_user_params(user_params, "sms_project.json", phone_number, database)
     return phone_number, user_params
+
 
 if __name__ == "__main__":
     get_all_inputs()

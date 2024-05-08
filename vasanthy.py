@@ -18,24 +18,27 @@ def get_coordinates(user_address):
 
 
 def send_sms_user(phone_number, message):
-    headers = {
-        'Authorization': AUTHORIZATION,
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-    }
-    payload = json.dumps({
-        "messages": [
-            {
-                "destinations": [
-                    {
-                        "to": phone_number
-                    }
-                ],
-                "from": "B-Smart Refuel",
-                "text": message
-            }
-        ]
-    })
-    data = requests.post(SMS_BASE_URL, data=payload, headers=headers)
-    response = data.text
-    print("message sent")
+    try:
+        headers = {
+            'Authorization': AUTHORIZATION,
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
+        payload = json.dumps({
+            "messages": [
+                {
+                    "destinations": [
+                        {
+                            "to": phone_number
+                        }
+                    ],
+                    "from": "B-Smart RFL",
+                    "text": message
+                }
+            ]
+        })
+        data = requests.post(SMS_BASE_URL, data=payload, headers=headers)
+        response = data.text
+        print("Message successfully send.")
+    except requests.HTTPError as e:
+        print(e)
