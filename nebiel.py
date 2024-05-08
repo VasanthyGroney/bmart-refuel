@@ -1,6 +1,7 @@
 import requests
 from dotenv import load_dotenv
 import os
+import json
 
 
 load_dotenv()
@@ -9,6 +10,8 @@ load_dotenv()
 INFO_URL_BASE = os.getenv("INFO_URL_BASE")
 INFO_API_KEY = os.getenv("INFO_API_KEY")
 GOOGLE_MAPS_BASE = os.getenv("GOOGLE_MAPS_BASE")
+BITLY_TOKEN = os.getenv("BITLY_TOKEN")
+BITLY_SHORTEN_URL = os.getenv("BITLY_SHORTEN_URL")
 
 
 def get_api_info(lat, lng, rad, fuel, sort):
@@ -32,3 +35,22 @@ def get_maps_link(gasstation):
                + gasstation["place"])
     final_address_query = address.replace(" ", "+")
     return GOOGLE_MAPS_BASE + final_address_query
+
+
+def shorten_link(link):
+    try:
+        headers = {
+            'Authorization': f'Bearer {BITLY_TOKEN}',
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
+        payload = json.dumps({
+            "long_url": link
+        })
+        data = requests.post(BITLY_SHORTEN_URL, data=payload, headers=headers)
+        response = data.json()
+        short_link = response["link"]
+        return short_link
+    except requests.HTTPError as e:
+        print("Error occurred to shorten link, continue with longer url.")
+        return link

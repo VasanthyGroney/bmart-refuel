@@ -15,7 +15,8 @@ def main():
             print("\n Please Try again.")
     gasstation = nebiel.get_api_info(lat, lng, rad, fuel, "price")
     link = nebiel.get_maps_link(gasstation)
-    message = nebiel.write_message(gasstation, link)
+    final_link = nebiel.shorten_link(link)
+    message = nebiel.write_message(gasstation, final_link)
     vasanthy.send_sms_user(phone_number, message)
 
 
