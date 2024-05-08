@@ -19,12 +19,11 @@ def get_api_info(lat, lng, rad, fuel, sort):
     return top_station
 
 
-def write_message(gasstation, fuel, link):
-    message_1 = (f'Top choice: {gasstation["name"]}\n'
-                 f'Price ({fuel}): {gasstation["price"]}\n')
-    message_2 = (f"Google Maps Link:\n"
-                 f"{link}")
-    return message_1, message_2
+def write_message(gasstation, link):
+    message = (f'Top choice:\n'
+               f'{gasstation["price"]}€ -- {gasstation["name"]}\n'
+               f"{link}")
+    return message
 
 
 def get_maps_link(gasstation):
