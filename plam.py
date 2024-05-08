@@ -48,9 +48,9 @@ def get_all_inputs():
     if found:
         user_params = {}
         for key, val in data.items():
-            print(f"{key}: {val}")
-            answer_choice = input(f"Do you want to use the same {key.capitalize()}?\nEnter 'yes' or 'no': ")
-            if "n" in answer_choice.lower():
+            print(f"Your previous {key} was: {val}")
+            answer_choice = input(f"Do you want to use the same {key}?\nEnter 'y' for yes: ")
+            if "y" != answer_choice.lower():
                 val = input(f"Enter a new {key}: ")
             user_params[key] = val
         save_user_params(user_params, "sms_project.json", phone_number, database)
@@ -59,7 +59,3 @@ def get_all_inputs():
     user_params = {"location": location, "radius": radius, "fuel": fuel}
     save_user_params(user_params, "sms_project.json", phone_number, database)
     return phone_number, user_params
-
-
-if __name__ == "__main__":
-    get_all_inputs()

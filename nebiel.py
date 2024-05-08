@@ -1,24 +1,29 @@
 import requests
+from dotenv import load_dotenv
+import os
 
-INFO_URL_BASE = "https://creativecommons.tankerkoenig.de/json/list.php?"
-API_KEY = "8eaba7a8-c6a0-7166-8b0c-8d9f2056c212"
-GOOGLE_MAPS_BASE = "https://www.google.com/maps/search/?api=1&query="
+
+load_dotenv()
+
+
+INFO_URL_BASE = os.getenv("INFO_URL_BASE")
+INFO_API_KEY = os.getenv("INFO_API_KEY")
+GOOGLE_MAPS_BASE = os.getenv("GOOGLE_MAPS_BASE")
 
 
 def get_api_info(lat, lng, rad, fuel, sort):
     res = requests.get(INFO_URL_BASE + "lat=" + lat + "&lng=" + lng + "&rad=" + rad
-                       + "&sort=" + sort + "&type=" + fuel + "&apikey=" + API_KEY)
+                       + "&sort=" + sort + "&type=" + fuel + "&apikey=" + INFO_API_KEY)
     data = res.json()
     top_station = data["stations"][0]
     return top_station
 
 
-def write_message(gasstation, fuel, link):
-    message_1 = (f'Top choice: {gasstation["name"]}\n'
-                 f'Price ({fuel}): {gasstation["price"]}\n')
-    message_2 = (f"Google Maps Link:\n"
-                 f"{link}")
-    return message_1, message_2
+def write_message(gasstation, link):
+    message = (f'Top choice:\n'
+               f'{gasstation["price"]}€ -- {gasstation["name"]}\n'
+               f"{link}")
+    return message
 
 
 def get_maps_link(gasstation):
