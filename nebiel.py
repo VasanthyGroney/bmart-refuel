@@ -2,10 +2,10 @@ import requests
 from dotenv import load_dotenv
 import os
 
-# Load environment variables from the .env file
+
 load_dotenv()
 
-# Access environment variables
+
 INFO_URL_BASE = os.getenv("INFO_URL_BASE")
 INFO_API_KEY = os.getenv("INFO_API_KEY")
 GOOGLE_MAPS_BASE = os.getenv("GOOGLE_MAPS_BASE")

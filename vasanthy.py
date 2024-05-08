@@ -3,10 +3,10 @@ import json
 from dotenv import load_dotenv
 import os
 
-# Load environment variables from the .env file
+
 load_dotenv()
 
-# Access environment variables
+
 COORD_BASE_URL = os.getenv("COORD_BASE_URL")
 COORD_API_KEY = os.getenv("COORD_API_KEY")
 SMS_BASE_URL = os.getenv("SMS_BASE_URL")
